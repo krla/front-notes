@@ -8,8 +8,11 @@
       <v-btn icon @click="goHome">
         <v-icon>mdi-home</v-icon>
       </v-btn>
-       <v-btn icon @click="goAuth">
-        <v-icon>mdi-location-enter</v-icon>
+       <v-btn icon @click="goEditor">
+        <v-icon>mdi-pencil</v-icon>
+      </v-btn>
+      <v-btn icon @click="logOut">
+        <v-icon>mdi-exit-to-app</v-icon>
       </v-btn>
     </v-app-bar>
   </div>
@@ -19,10 +22,14 @@
 export default {
   methods: {
     goHome() {
+      this.$router.push("/notes");
+    },
+    logOut() {
+      localStorage.clear();
       this.$router.push("/");
     },
-    goAuth() {
-      this.$router.push("/");
+    goEditor() {
+      this.$router.push("/editor");
     }
   }
 }

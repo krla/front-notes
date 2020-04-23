@@ -20,5 +20,21 @@ export default {
       ...user
     })
     return response.data
+  },
+  async getAllNotes () {
+    const response = await API.get('/me/notes', {
+      headers: {
+        token: localStorage.getItem('token') //eslint-disable-line
+      }
+    })
+    return response.data
+  },
+  async createNote (note) {
+    const response = await API.post('/me/notes', note, {
+      headers: {
+        token: localStorage.getItem('token') //eslint-disable-line
+      }
+    })
+    return response.data
   }
 }

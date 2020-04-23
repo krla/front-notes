@@ -10,12 +10,30 @@ const routes = [
   {
     path: '/notes',
     name: 'Notes',
-    component: Notes
+    component: Notes,
+    beforeEnter (to, from, next) {
+      if (!localStorage.getItem("token")) { //eslint-disable-line
+        next({
+          name: 'Auth'
+        })
+      } else {
+        next()
+      }
+    }
   },
   {
     path: '/editor',
     name: 'Editor',
-    component: Editor
+    component: Editor,
+    beforeEnter (to, from, next) {
+      if (!localStorage.getItem("token")) { //eslint-disable-line
+        next({
+          name: 'Auth'
+        })
+      } else {
+        next()
+      }
+    }
   },
   {
     path: '/',
