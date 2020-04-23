@@ -36,5 +36,13 @@ export default {
       }
     })
     return response.data
+  },
+  async deleteNotes (noteId) {
+    const response = await API.delete(`/me/notes/${noteId}`, {
+      headers: {
+        token: localStorage.getItem('token') //eslint-disable-line
+      }
+    })
+    return response.data
   }
 }
