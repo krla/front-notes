@@ -4,8 +4,8 @@
       <v-card-text v-html="noteObject.texto">{{noteObject.texto}}</v-card-text>
 
       <v-card-actions>
-        <v-btn text>Editar</v-btn>
-        <v-btn text @click="deleteNotes()">Eliminar</v-btn>
+        <v-btn :to="`/editor/${noteObject._id}`" text>Editar</v-btn>
+        <v-btn text @click="deleteNote()">Eliminar</v-btn>
       </v-card-actions>
     </v-card>
   </div>
@@ -18,11 +18,11 @@ export default {
     noteObject: Object
   },
   methods: {
-    deleteNotes() {
-      this.$emit("deleteNotes", this.noteObject._id);
+    deleteNote() {
+      this.$emit("deleteNote", this.noteObject._id);
     }
   }
-};
+}
 </script>
 
 <style lang="scss" scoped>

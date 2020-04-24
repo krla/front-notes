@@ -29,6 +29,14 @@ export default {
     })
     return response.data
   },
+  async getNoteById (noteId) {
+    const response = await API.get(`/me/notes/${noteId}`, {
+      headers: {
+        token: localStorage.getItem('token') //eslint-disable-line
+      }
+    })
+    return response.data
+  },
   async createNote (note) {
     const response = await API.post('/me/notes', note, {
       headers: {
@@ -37,12 +45,23 @@ export default {
     })
     return response.data
   },
-  async deleteNotes (noteId) {
+  async deleteNote (noteId) {
     const response = await API.delete(`/me/notes/${noteId}`, {
       headers: {
         token: localStorage.getItem('token') //eslint-disable-line
       }
     })
     return response.data
+  },
+  async editNote (noteId, note) {
+    console.log(noteId)
+    console.log(note)
+    const response = await API.put(`/me/notes/${noteId}`, note, {
+      headers: {
+        token: localStorage.getItem('token') //eslint-disable-line
+      }
+    })
+    return response.data
   }
+
 }

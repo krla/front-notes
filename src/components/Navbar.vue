@@ -14,6 +14,7 @@
       <v-btn icon @click="logOut">
         <v-icon>mdi-exit-to-app</v-icon>
       </v-btn>
+      {{ isToken }}
     </v-app-bar>
   </div>
 </template>

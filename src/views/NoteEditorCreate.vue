@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <ckeditor :editor="editor" v-model="editorData" :config="editorConfig"></ckeditor>
-    <div>
-			<v-btn @click="editNote()">Guardar cambios</v-btn>
+		<div>
+			<v-btn @click="createNote()">Guardar</v-btn>
 		</div>
   </div>
 </template>
@@ -20,23 +20,17 @@ export default {
       editorConfig: {
         // The configuration of the editor.
       },
-    }
+    };
   },
   methods: {
-    editNote() {
-      const newText = { 
+    createNote() {
+      const newNote = {
         texto: this.editorData
-      }
-      Api.editNote(this.$route.params.noteId, newText).then(() => {  
-        this.$router.push("/notes")
-      })
-    } 
-  },
-  mounted() {
-    Api.getNoteById(this.$route.params.noteId)
-      .then(note => {
-        this.editorData = note.texto
-      })
+      };
+      Api.createNote(newNote).then(() => {
+        this.$router.push("/notes");
+      });
+    }
   }
 }
 </script>

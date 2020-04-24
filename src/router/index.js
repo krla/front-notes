@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Notes from '../views/Notes.vue'
 import Editor from '../views/NoteEditor.vue'
 import Auth from '../views/Auth.vue'
+import EditorNew from '../views/NoteEditorCreate.vue';
 
 Vue.use(VueRouter)
 
@@ -23,6 +24,20 @@ const routes = [
   },
   {
     path: '/editor',
+    name: 'EditorCreate',
+    component: EditorNew,
+    beforeEnter (to, from, next) {
+      if (!localStorage.getItem("token")) { //eslint-disable-line
+        next({
+          name: 'Auth'
+        })
+      } else {
+        next()
+      }
+    }
+  },
+  {
+    path: '/editor/:noteId',
     name: 'Editor',
     component: Editor,
     beforeEnter (to, from, next) {

@@ -1,6 +1,6 @@
 <template>
   <div class="notes">
-    <Note v-for="(note, idx) in notes" :key="idx" :noteObject="note" v-on:deleteNotes="deleteNotes" />
+    <Note v-for="(note, idx) in notes" :key="idx" :noteObject="note" v-on:deleteNote="deleteNote" />
   </div>
 </template>
 
@@ -24,13 +24,13 @@ export default {
     });
   },
   methods: {
-    deleteNotes(noteId) {
-      Api.deleteNotes(noteId).then(() => {
+    deleteNote(noteId) {
+      Api.deleteNote(noteId).then(() => {
         Api.getAllNotes().then(res => {
           this.notes = res;
         });
       });
-    },
+    }
   }
 };
 </script>
