@@ -1,27 +1,36 @@
 <template>
   <div class="notes">
-    <Note v-for="(note, idx) in notes" :key="idx" :noteObject="note"/>
+    <Note v-for="(note, idx) in notes" :key="idx" :noteObject="note" v-on:deleteNotes="deleteNotes" />
   </div>
 </template>
 
 <script>
-import Api from '../services/Api'
-import Note from '../components/NoteCard'
+import Api from "../services/Api";
+import Note from "../components/NoteCard";
 
 export default {
   name: "Notes",
-  data(){
+  data() {
     return {
-      notes:[]
-    }
+      notes: []
+    };
   },
   components: {
     Note
   },
-  created () {
+  created() {
     Api.getAllNotes().then(res => {
-      this.notes = res
-    })
+      this.notes = res;
+    });
+  },
+  methods: {
+    deleteNotes(noteId) {
+      Api.deleteNotes(noteId).then(() => {
+        Api.getAllNotes().then(res => {
+          this.notes = res;
+        });
+      });
+    },
   }
 };
 </script>

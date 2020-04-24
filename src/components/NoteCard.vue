@@ -12,7 +12,6 @@
 </template>
 
 <script>
-import Api from "../services/Api";
 export default {
   name: "note",
   props: {
@@ -20,7 +19,7 @@ export default {
   },
   methods: {
     deleteNotes() {
-      Api.deleteNotes().then(() => {})
+      this.$emit("deleteNotes", this.noteObject._id);
     }
   }
 };
